@@ -171,7 +171,7 @@ public class FrmMenuPrincipal extends JFrame {
     
     public void mniListaPersonaActionPerformed(ActionEvent e)
     {
-    FrmListaPersona frm= new FrmListaPersona();
+    Frmlistapersona frm= new Frmlistapersona();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
