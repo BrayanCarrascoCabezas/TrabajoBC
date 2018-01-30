@@ -7,9 +7,11 @@ import taller.rnegocio.entidades.*;
 import taller.rnegocio.impl.*;
 
 public class PersonaTest {
+    
     public PersonaTest() {
     }
     @Test
+    
     public void pruebageneral(){
         //              INSERTAR
         int filasAfectadas =0;
@@ -21,14 +23,15 @@ public class PersonaTest {
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
         }
+        
         assertEquals(filasAfectadas>0, true);
         //              LISTADO DE PEdido
         List<Persona> lista = new ArrayList<>();
         try {
             lista = personaDao.obtener();
             for (Persona c:lista){
-                System.out.println("---Datos personas---");
-                System.out.println("Id :"+c.getCodigo());
+                System.out.println("---Datos de la persona---");
+                System.out.println("Id persona :"+c.getCodigo());
                 System.out.println("Nombre :"+c.getNombre());
                 System.out.println("Telefono :"+c.getTelefono());
             System.out.println("Cedula :"+c.getCedula());
