@@ -16,7 +16,7 @@ public class NegocioTest {
         INegocio negocioDao = new NegocioImp();
         IPersona personaDao = new PersonaImp();
         Persona persona = personaDao.obtener(3);
-        Negocio negocio = new Negocio(4,persona,"Hamburguesas","Orozco y darquea","096564987");
+        Negocio negocio = new Negocio(3,persona,"Hamburguesas","Orozco y darquea","096564987");
         try{
             filasAfectadas = negocioDao.insertar(negocio);
             System.out.println("Negocio ingresado!!!\n");

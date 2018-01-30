@@ -22,7 +22,10 @@ import taller.rnegocio.entidades.*;
 import taller.rnegocio.impl.*;
 
 public class FrmNuevoNegocio extends JInternalFrame{
+    List<Persona> lstPersona;
+    JComboBox<Persona> cmbPersona;
     JLabel lblCodigo;
+    JLabel lblPersona;
     JLabel lblNombres;
     JLabel lblTelefono;
     JLabel lblDireccion;
@@ -50,10 +53,13 @@ public class FrmNuevoNegocio extends JInternalFrame{
         lblTitulo0 = new JLabel("Datos Negocio");
         
         lblCodigo= new JLabel("Código:");
+        lblPersona = new JLabel("Persona");
         lblDireccion= new JLabel("Direccion:");
         lblNombres= new JLabel("Nombres:");
         lblTelefono= new JLabel("Teléfono:");
         txtCodigo = new JTextField(2);
+        cargarPersonas();
+        cmbPersona= new JComboBox(lstPersona.toArray());
         txtDireccion= new JTextField(2);
         txtNombres= new JTextField(2);
         txtTelefono= new JTextField(2);        
@@ -63,6 +69,8 @@ public class FrmNuevoNegocio extends JInternalFrame{
         
         pnlCentral.add(lblCodigo);
         pnlCentral.add(txtCodigo);
+        pnlCentral.add(lblPersona);
+        pnlCentral.add(cmbPersona);
         pnlCentral.add(lblDireccion);
         pnlCentral.add(txtDireccion);
         pnlCentral.add(lblNombres);
@@ -89,6 +97,18 @@ public class FrmNuevoNegocio extends JInternalFrame{
         this.add(pnlCentral, BorderLayout.CENTER);
         this.add(pnlPie, BorderLayout.SOUTH);        
     }
+    
+    public void cargarPersonas(){
+        IPersona personaDao = new PersonaImp();
+        try {
+            lstPersona = personaDao.obtener();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al cargar los cursos!!",
+                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
     public static void main(String[] args) {
         FrmNuevoNegocio frmMenu= new FrmNuevoNegocio();
         frmMenu.setVisible(true);
@@ -99,9 +119,10 @@ public class FrmNuevoNegocio extends JInternalFrame{
             Negocio negocio = new Negocio();
             INegocio negocioDao = new NegocioImp();
             negocio.setCod_negocio(Integer.parseInt(txtCodigo.getText()));
+            negocio.setPersona((Persona) cmbPersona.getSelectedItem());
             negocio.setDireccion(txtDireccion.getText());
             negocio.setNombre(txtNombres.getText());
-           negocio.setTelefono(txtTelefono.getText());
+            negocio.setTelefono(txtTelefono.getText());
                         try {
                 if(negocioDao.insertar(negocio)>0 ){
                 JOptionPane.showMessageDialog(this,"Registrado correctamente!!",

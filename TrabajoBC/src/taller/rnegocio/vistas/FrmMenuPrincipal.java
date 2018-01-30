@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import taller.rnegocio.*;
 
 public class FrmMenuPrincipal extends JFrame {
 
@@ -26,7 +27,7 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaPersona;
     JMenuItem mniListaPersona;
     JMenu mnVehiculo;
-    JMenuItem mniNuevaVehiculo;
+    JMenuItem mniNuevoVehiculo;
     JMenuItem mniModificaVehiculo;
     JMenuItem mniEliminaVehiculo;
     JMenuItem mniListaVehiculo;
@@ -66,12 +67,12 @@ public class FrmMenuPrincipal extends JFrame {
         mniEliminaPersona= new JMenuItem("Elimina");
         mniBuscaPersona= new JMenuItem("Busca");
         mniListaPersona= new JMenuItem("Lista");
-//        mniListaPersona.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mniListaPersonaActionPerformed(e);
-//            }
-//        });
+        mniListaPersona.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaPersonaActionPerformed(e);
+            }
+        });
         mnPersona.add(mniNuevoPersona);
         mnPersona.add(mniModificaPersona);
         mnPersona.add(mniEliminaPersona);
@@ -91,33 +92,41 @@ public class FrmMenuPrincipal extends JFrame {
         mniEliminaNegocio= new JMenuItem("Elimina");
         mniBuscaNegocio= new JMenuItem("Busca");
         mniListaNegocio= new JMenuItem("Lista");
-
-//        mniListaNegocio.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mniListaNegocioActionPerformed(e);
-//            }
-//        });
+        mniListaNegocio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaNegocioActionPerformed(e);
+            }
+        });
         
         mnNegocio.add(mniNuevoNegocio);
         mnNegocio.add(mniModificaNegocio);
         mnNegocio.add(mniEliminaNegocio);
         mnNegocio.addSeparator();
         mnNegocio.add(mniBuscaNegocio);
-        mnNegocio.add(mniListaNegocio);       
+        mnNegocio.add(mniListaNegocio);
+        
         mnVehiculo = new JMenu("Vehiculo");
-        mniNuevaVehiculo = new JMenuItem("Nuevo");
-//        mniNuevaVehiculo.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mniNuevoVehiculoActionPerformed(e);
-//            }
-//        });
+        mniNuevoVehiculo = new JMenuItem("Nuevo");
+        mniNuevoVehiculo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoVehiculoActionPerformed(e);
+            }
+        });
         mniModificaVehiculo = new JMenuItem("Modifica");
         mniEliminaVehiculo = new JMenuItem("Elimina");
         mniBuscaVehiculo = new JMenuItem("Busca");
         mniListaVehiculo = new JMenuItem("Lista");
-        mnVehiculo.add(mniNuevaVehiculo);
+        
+        mniListaVehiculo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaVehiculoActionPerformed(e);
+            }
+        });
+        
+        mnVehiculo.add(mniNuevoVehiculo);
         mnVehiculo.add(mniModificaVehiculo);
         mnVehiculo.add(mniEliminaVehiculo);
         mnVehiculo.addSeparator();
@@ -148,29 +157,38 @@ public class FrmMenuPrincipal extends JFrame {
         frm.setVisible(true);
     }
     
+        public void mniNuevoVehiculoActionPerformed(ActionEvent e)
+    {
+        FrmNuevoVehiculo frm= new FrmNuevoVehiculo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
     public void mniSalirActionPerformed(ActionEvent e){
         System.exit(0);
     }
-//    public void mniNuevoVehiculoActionPerformed(ActionEvent e)
-//    {
-//    FrmNuevoVehiculo frm= new FrmNuevoVehiculo();
-//    dkpEscritorio.add(frm);
-//    frm.setVisible(true);
-//    }
-//    
-//    public void mniListaPersonaActionPerformed(ActionEvent e)
-//    {
-//    FrmListaPersona frm= new FrmListaPersona();
-//    dkpEscritorio.add(frm);
-//    frm.setVisible(true);
-//    }
-//    
-//     public void mniListaNegocioActionPerformed(ActionEvent e)
-//    {
-//    FrmListaNegocio frm= new FrmListaNegocio();
-//    dkpEscritorio.add(frm);
-//    frm.setVisible(true);
-//    }
+
+    
+    public void mniListaPersonaActionPerformed(ActionEvent e)
+    {
+    FrmListaPersona frm= new FrmListaPersona();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    
+    public void mniListaVehiculoActionPerformed(ActionEvent e)
+    {
+    FrmListaVehiculo frm= new FrmListaVehiculo();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    
+     public void mniListaNegocioActionPerformed(ActionEvent e)
+    {
+    FrmListaNegocio frm= new FrmListaNegocio();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
     
     public static void main(String[] args) {
         FrmMenuPrincipal frm = new FrmMenuPrincipal();
